@@ -1,0 +1,788 @@
+Creating Laravel new project:
+
+open CMD or powershell.
+ 
+go to the directory you want to save your project.
+
+you can change directory by "CD" command than write the address you
+want to go for example = "C:\xampp\htdocs\"
+
+Now to create a new project simply write this command "laravel new projectname".
+projectname is your name of the disred project.
+
+then press Enter for to excute the command.
+
+then write "php artisan serve" for live server of your laravel project.
+
+------------------------------------------------------------------------
+
+In your project file:
+
+app folder is most important.
+app/Console/Kernel.php is to hold custom artisan commands which then be executed
+in the CMD or powershell.
+
+app/Exceptions/Handler.php is to define handlers if a runtime error.
+
+app/Http/Controllers/Controller.php is a controller file 
+
+app/Http/Middleware has many file like Auth and it works as a guard.
+
+app/Model contains model file of user which is a database table related. 
+
+app/Providers is a folder for the service provider.
+
+bootstrap is for the speeding up the website.
+
+
+-----------------------------------------------------------------------
+
+route/web.php is to made and handle route 
+
+Route is the class of php.
+there are many methods can be use like:
+
+get-> is used for view Url
+post-> is used to store dataabse.
+put --> also for to store database / update is also included.
+patch-> also for to store database / update is also included.
+delete-> delete the database.
+
+---------------------------------------------------------------------------
+
+Blade Tenplate:
+
+Blade is a templating engine of laravel.
+its provides things such as conditional statements and loops etc on it own structure.
+blade template save with the extension of blade.php file.
+
+differnece b/w blade laravel and core php printing directories:
+
+core php
+simple echo / printing data or functions
+<?php
+	echo"shahrukh";
+?>
+
+balde laravel
+simple echo / printing data or functions
+{{$name}}
+
+?? is for OR
+{{$name ?? "Guest"}}
+
+-----------------------------------------------------------------
+
+blade laravel conditional directories:
+
+(@if, @elseif, @else, and @endif)
+(@unless and @endunless)
+(@isset and @endisset)
+
+    @if($name == "")
+        {{"Name is empty"}}
+    @elseif($name == "shahrukh")
+        {{"Name is correct"}}
+    @else
+        {{"Name is incorrect"}}
+    @endif
+
+    @unless($name == "Shahrukh")
+	{{"This is not the name"}}
+    @endunless
+
+    @isset($name)
+        Welcome, $name
+    @endisset
+
+blade laravel looping directories:
+
+(@for and @endfor)
+
+    @for($i=0;$i<=10;$i++)
+        <h1>
+            {{$i}}
+        </h1>
+    @endfor
+
+(@while and @endwhile)
+
+    @php			//here <?php?> is replace with @php @endphp with laravel blade template 
+        $i = 1;
+    @endphp
+    @while ($i<=10)
+        <h1>{{$i}}</h1>
+        @php
+            $i++;
+        @endphp
+    @endwhile
+
+(@foreach and @endforeach) retriving data from arrays
+
+    @php
+    $countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+    @endphp
+
+    <select>
+    @foreach ($countries as $key=> $i)
+        <option value="{{$key}}">{{$i}}</option>
+    @endforeach
+    </select>
+
+
+
+(@break and @continue)
+    @for($i=0;$i<=10;$i++)
+        @if ($i==5)
+            @break
+        @endif
+            {{$i}}
+    @endfor
+
+
+    @for($i=0;$i<=10;$i++)
+        @if ($i==5)
+            @continue
+        @endif
+            {{$i}}
+    @endfor
+
+---------------------------------------------------------------------------
+
+Blade layout directive:
+
+@yield is to display the content given in the section.
+@section and @endsection defines a section content.
+@extends to specify the child layout which view should be inherit.
+
+
+@include to include the layout from other file.
+
+
+@stack is to dispaly the content which is b/w the @push @endpush
+
+@push and endpush can contain mete tags and links and tilte tags
+
+-------------------------------------------------------------------------
+
+Controller:
+ controllers are class based php file 
+ controllers can group related request handling logic into a single class 
+
+3 types of controller:
+ basic controller: we have to define every funtions in it.
+ single action controller: we have only single funtion in it.
+ Resource controller: predefined CRUD operations for database connectivity.
+
+
+Commands for making controllers:
+basic: php artisan make:controller ControllerName.
+Single Action: php artisan make:controller ControllerName --invokable.
+Resource: php artisan make:controller ControllerName --resource.
+
+
+Calling with controller:
+Route::get('/',[basicController::class,'index']);   // 1st way
+
+Route::get('/about','App\Http\Controllers\basicController@about');  // 2nd way
+
+Route::get('/course',singleActionController::class);  // not write [] these brackects because it is a single action controller.
+
+//for resoource controller
+
+Route::resource('/photo',resourseController::class);
+  
+
+-------------------------------------------------------------------------
+
+Laravel form submiting and validation:
+
+only in the view file
+ <form class="testing-form" action="" method="POST">
+                            @csrf  /// nesseary for the submition
+                            <div class="form-group"> // name is also very important
+                                <input type="text" name="country" placeholder="Country" value="{{old('country')}}">
+                                <span class="text-danger">
+                                    @error('country') // importan for showing errors
+                                        {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+
+
+controller file
+
+    public function index()
+    {
+        return view('index');
+    }
+    public function register(Request $request)
+    {   
+        $request->validate(
+            [
+                'country'=>'required',
+                'email'=>'required|email', /// important for the error message
+                'phone'=>'required',
+                'message'=>'required'
+            ]
+        );
+        echo "<pre>";
+        print_r($request->all());	// just for testing purpose
+    }
+
+
+route file
+
+Route::post('/',[RegistrationController::class,'register']); // submition is done through post 
+method.
+
+
+
+---------------------------------------------------------------------------------
+Components in laravel:
+
+for making components in laravel type "php artisan make:component ComponentName" 
+in your terminal or cmd.
+
+then 2 file will be created with a folder named components
+
+1st file is named input.php which is located in app\View\Components\Input.php 
+* this input.php  is the name of that component.
+2nd file is named input.blade.php whic is located in resources\views\components\input.blade.php
+
+input.blade.php:
+
+<div class="form-group">
+    <label for="">{{$label}}</label>
+    <input type="{{$type}}" name="{{$name}}" id="" class="form-control" placeholder=""
+        aria-describedby="helpId"/>
+    <span class="text-danger">
+        {{-- @error('')
+            {{$message}}
+        @enderror --}}
+    </span>
+</div>
+
+input.php:
+
+class Input extends Component
+{
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+
+    public $type;
+    public $name;
+    public $label;
+
+    public function __construct($type,$name,$label)
+    {
+        $this->type =$type; 
+        $this->name =$name; 
+        $this->label =$label; 
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
+     */
+    public function render()
+    {
+        return view('components.input');
+    }
+}
+
+form file:
+
+            <x-input type="text" name="Name" label="Name"/>
+            <x-input type="email" name="Email" label="Email"/>
+            <x-input type="password" name="Password" label="Password"/>
+            <x-input type="password" name="Password_Confirmed" label="Confirm Passowrd"/>
+
+-----------------------------------------------------------------------------------------
+DataBase configration and migration:
+
+1st you have to open xampp server and mysql
+then you go to phpmyadmin
+create database
+
+then go to .env file in your project type the name of database
+*laravel writes it by defualt the name of the project
+then open terminal or cmd
+type "php artisan config:cache" to clear cache then hit enter to execute
+then type "php artisan migrate" to migrate the buildin tables for your project.
+
+------------------------------------------------------------------------------------
+ creating table 
+command "php artisan make:migration create_tablename_table"
+
+"php artisan migrate:rollback" to delete the table from mysql
+
+"php artisan migrate:refresh" to delete all the table and add again in one go.
+
+now the file is generated in the \database\migrations\2023_02_16_064921_create_customers_table.php
+
+  public function up()
+    {
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id('customer_id');
+            $table->string('name',50);
+            $table->string('email',50);
+            $table->text('address');
+            $table->date('DOB')->nullable();
+            $table->enum('gender',["Male","Female","Others"]);
+            $table->string('password');
+            $table->boolean('status')->default(1);
+            $table->integer('points')->default(0);
+            $table->timestamps();
+        });
+    }
+
+command "php artisan make:migration add_columns_to_customers_table"
+ for adding columns to your table
+
+which is created in database\migrations\2023_02_16_074038_add_columns_to_customers_table.php
+
+
+    public function up()
+    {
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('country',50)->nullable()->after('address');
+            $table->string('city',50)->nullable()->after('address');
+
+        });
+    }
+
+php artisan migrate   to migrate the columns
+
+---------------------------------------------------------------------------
+
+Models in laravel
+
+every database table must have a model
+
+command for creating model "php artisan make:model modename"
+
+command for creating both migration and model files at once
+"php artisan make:model modename --migration"
+
+model location
+\app\Models\Customer.php
+
+only these 2 things is important
+
+class Customer extends Model
+{
+    use HasFactory;
+
+    protected $table = 'customers';
+    protected $primaryKey = 'customers-id';
+}
+
+-----------------------------------------------------------------------
+Laravel insert query through model:
+
+in controller 
+
+
+        echo"<pre>";
+        print_r($request->all()); \\just for testing
+
+        $customer = new Customer;
+        $customer->name = $request['name'];
+        $customer->email = $request['email'];
+        $customer->password = md5($request['password']);
+        $customer->password_confirmed = md5($request['password_confirmed']);
+        $customer->save();
+		
+	  return redirect('/customer/view'); 
+
+    public function view()
+    {
+        /// this to show data in the table
+        $customer = Customer::all();
+        $data = compact('customer');  
+        return view('customer-view')->with($data);
+    }
+
+route:
+
+Route::get('/customer/view',[CustomerController::class,'view']);
+
+customer-view:
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($customer as $customer)
+          <tr>
+            <th scope="row">{{$customer->customer_id}}</th>
+            <td>{{$customer->name}}</td>
+            <td>{{$customer->email}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+
+---------------------------------------------------------------------------------------------
+Deleting a record:
+
+make a route for the delete button
+
+Route::get('/customerview/delete/{id}',[CustomerController::class,'destroy'])->name('customer.delete'); 
+
+
+{id} is neccessary for the delete operation
+and it will call destory funtion
+name('customer.delete'); is also a routing method
+
+
+now got to the controller
+
+pass a parameter in the destroy funtion $id
+and type
+
+$customer = Customer::find($id)->delete();
+
+return redirect()->back(); // back is used to send it back where it come from.
+
+now in view page you have to type
+
+
+in href="{{url('/customerview/delete')}}/{{$customer->customer_id}}"  //using route method
+
+or you can write
+
+href="{{route('customer.delete',['id'=> $customer->customer_id])}}"
+
+
+for avoiding runtime error while deleting
+
+    public function destroy($id)
+    {
+        $customer = Customer::find($id);
+        
+        if(!is_null($customer))
+        {
+            $customer->delete();
+        }
+        return redirect('/customerview');
+
+
+    }
+
+-------------------------------------------------------------------------------------------
+Update data:
+
+1st create a route of edit
+
+// for editing record//
+
+Route::get('/customerview/edit/{id}',[CustomerController::class,'edit'])->name('customer.edit');
+
+then create a function in controller of edit
+
+    public function edit($id)
+    {
+        $customer = Customer::find($id);
+        if(is_null($customer))
+        {
+            // not found
+            return redirect('/customerview');
+        }
+        else
+        {
+            $url = url('/customerview/update').'/'.$id;
+            $title = "Update";
+            $btn = 'Save Changes';
+            $data = compact('customer','url','title','btn');
+            return view('customer')->with($data);
+        }
+    }
+
+you also have to change the create funtion
+
+    public function index()
+    {
+        $url = url('/customer');
+        $title = "Registration";
+        $btn = "Submit";
+        $data = compact('url','title','btn');
+        return view('customer')->with($data);
+    }
+
+then on the input add values="{{$customer->name}}"
+values="{{$customer->email}}" to retrive the data of that id
+
+and also put the dynamic variable to change content accordingly
+
+
+then create a update funtion in the controller
+
+    public function update(Request $request,$id)
+    {
+        $customer = Customer::find($id);
+        $customer->name = $request['name'];
+        $customer->email = $request['email'];
+        $customer->save();
+
+        return redirect('/customerview');
+
+    }
+
+and lastly add route for the update
+
+
+// for updating record//
+
+Route::post('/customerview/update/{id}',[CustomerController::class,'update'])->name('customer.update');
+
+
+---------------------------------------------------------------------------------------------
+Creating helper file:
+
+this file is loaded on every page and used for important functions
+craete a new file in the app folder as helper.php 
+
+navigate to composer.json 
+ go to autoload and type
+"files":["app/helper.php"],
+ 
+go to terminal type composer dump-autoload
+hit enter
+
+if(!function_exists('p'))  
+/// will check that the this function exists or not if not then it will craete this funtion.
+{
+    function p($data)
+    {
+        echo "<pre>";
+        print_r($data);
+    }
+}
+
+
+in the store funtion you have to type
+
+        p($request->all());
+        die;
+
+--------------------------------------------------------------------------------------------
+laravel mutator:
+
+A mutator transforms an Eloquent attribute value when it is set. 
+To define a mutator, you may provide the set argument when defining your attribute. 
+Let's define a mutator for the first_name attribute. 
+This mutator will be automatically called when we attempt to set the value of the first_name attribute on the model
+
+creating mutator:
+
+goto the model customer.php 
+
+then make a public function
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
+
+if the attribute is name like this 'user_name' in the database then 
+
+    public function setUserNameAttribute($value)
+    {
+        $this->attributes['user_name'] = ucwords($value);
+    }
+
+
+creating accessor:
+
+it will not change it in the database but only in the view
+
+then make a public function
+
+    public function getDobAttribute($value)
+    {
+       return date("d-M-Y",strtotime($value));
+    }
+
+----------------------------------------------------------------------------------------
+Sessions:
+
+Retriving data:
+	
+	$request->session()->get('key')         // session() is a global function in laravel
+	session('key');
+	
+Retriving All Sesssion Data:
+
+	$request->session()->all()
+	session()->all();
+
+Determining if an item Exists in the Session:
+
+	$request->session()->has('key')
+	session()->key('key') 
+
+Storing data:
+
+	$request->session()->put('key','value');
+	session(['key'=>'value']);
+
+Flash Data:
+
+	$request->session()-flash('status','Task was successfull!');   /// only for one time///
+	session()-all();
+
+deleting data:
+
+	$request->session()->forget('key');
+	$request session()->forget(['key1','key2']);
+	$request->session()->flush();
+
+
+---------------------------------------------------------------------------------------
+Soft Delete in Laravel:
+
+
+
+
+Card Payment Gateway:
+
+composer require stripe/stripe-php
+create a stripe account (paymentWITHlaravel10)
+changes in.env:
+	Secret and publish key
+
+make route: 
+    Route::get('/card_order/stripe/{total_price}',[HomeController::class,'card_order'])->name('card_order');
+    Route::post('/card_order/stripe/{total_price}',[HomeController::class,'stripe_post'])->name('stripe_post'); 
+
+make payment view:
+
+form with javascript validation
+
+ 
+controller code:
+    public function stripe_post(Request $request,$total_price)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    
+        Stripe\Charge::create ([
+                "amount" => $total_price *100,
+                "currency" => "pkr",
+                "source" => $request->stripeToken,
+                "description" => "Test payment." 
+        ]);
+      
+        // Session::flash('success', 'Payment successful!');
+        $user = Auth::user();
+        $id = $user->id;
+        $data = Cart::where('user_id','=',$id)->get();
+
+        foreach($data as $data)
+        {
+            
+            $order = new Order;
+            $order->name = $data->name;
+            $order->email = $data->email;
+            $order->phone = $data->phone;
+            $order->address = $data->address;
+            $order->user_id = $data->user_id;
+            
+            $order->product_title = $data->product_title;
+            $order->price = $data->price;
+            $order->quantity = $data->quantity;
+            $order->image = $data->image;
+            $order->product_id = $data->product_id;
+
+            $order->payment_status = 'Card Payment';
+            $order->delivery_status = 'Paid';
+            
+            $order->save();
+
+            $cart_id = $data->id;
+            $cart = Cart::find($cart_id);
+            $cart->delete();
+        }
+        return redirect()->back()->with('success','Payment successful!');
+    }
+
+
+
+PDF download:
+
+composer require barryvdh/laravel-dompdf
+go to config/app.php:
+'providers' =>
+[
+	Barryvdh\DomPDF\ServiceProvider::class,
+],
+'aliases' =>
+[
+	'PDF' => Barryvdh\DomPDF\Facade::class,
+]
+
+    public function print_pdf($id)
+    {
+        $data = Order::find($id);
+        $pdf = PDF::loadView('admin.pdf', compact('data'));
+
+        return $pdf->download('order_details.pdf');
+    }
+
+Email Verification in Laravel:
+
+changes in .env file:
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=456 or 587
+MAIL_USERNAME=firebase3322@gmail.com
+MAIL_PASSWORD=app password
+MAIL_ENCRYPTION=ssl or tls
+MAIL_FROM_ADDRESS="firebase3322@gmail.com"
+MAIL_FROM_NAME="E-commerce Project"
+
+go to user.php model:
+ 
+add
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+class User extends Authenticatable implements MustVerifyEmail
+
+go to config/fortify.php:
+
+uncomment in  features
+Features::emailVerification()
+------------------------------
+we have changed in RouteServiceProvider
+/redirect so we can't use this
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
